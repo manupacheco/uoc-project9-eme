@@ -13,7 +13,7 @@ main {
 } 
 
 nav {
-  background-color: rgb(33, 121, 80) !important;
+  background-color: rgb(12, 107, 131) !important;
   min-height: 80px;
   width: 100%;
   /* color: rgb(240, 240, 240); */
@@ -33,13 +33,54 @@ nav a {
   }
 }
 
-.carousel-item {
-  min-height: 350px;
-  max-height: 350px;
+.welcome-info {
+  width: 80%;
+  padding: 2em 5em;
+  align-self: center;
+  text-align: center;
+  font-size: 20px;
 }
 
-.carousel-item img {
-  margin-top: -100px;
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 3em;
+}
+
+.dropdown {
+  padding: 0 2em;
+} 
+
+.prod {
+  padding-bottom: 2em;
+}
+
+.prod-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.prod-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+} 
+
+.rate {
+  font-size: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+} 
+
+.rate > button {
+  width: 5em;
+} 
+
+.fa-star {
+  color: rgb(255, 208, 0);
 }
 
 content {
@@ -48,7 +89,8 @@ content {
 }
 
 footer {
-  background-color: rgb(33, 121, 80);
+  background-color: rgb(12, 107, 131);
   height: 80px;
   width: 100%;
+  color: white;
 } 
