@@ -33,6 +33,17 @@ nav a {
   }
 }
 
+#loginModal .modal-body form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+
+#loginModal .modal-body button {
+  width: 10em;
+  margin-bottom: 2em;
+}
+
 .welcome-info {
   width: 80%;
   padding: 2em 5em;
