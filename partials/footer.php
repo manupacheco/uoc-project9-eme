@@ -1,4 +1,4 @@
-<footer class="text-center py-3">
+<footer class="text-center">
   © 2018 EME
 </footer>
 

@@ -1,0 +1,54 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  min-width: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+} 
+
+nav {
+  background-color: rgb(33, 121, 80) !important;
+  min-height: 80px;
+  width: 100%;
+  /* color: rgb(240, 240, 240); */
+}
+
+nav a {
+  /* color: white !important; */
+  font-weight: bold;
+}
+
+@media ( min-width: 576px ) {
+  .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.carousel-item {
+  min-height: 350px;
+  max-height: 350px;
+}
+
+.carousel-item img {
+  margin-top: -100px;
+}
+
+content {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  background-color: rgb(33, 121, 80);
+  height: 80px;
+  width: 100%;
+} 
