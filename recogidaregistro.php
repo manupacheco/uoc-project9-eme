@@ -32,7 +32,7 @@ try {
 
 
 // tabla 4 
-$sql =  "INSERT INTO usuarios (usuario, password, nombre, apellidos,mail, telefono )VALUES ( :usuario, :password, :nombre,:apellidos,:email,:telefono) ;";
+$sql =  "INSERT INTO usuarios (fecha,usuario, password, nombre, apellidos,mail, telefono )VALUES ( NOW(),:usuario, :password, :nombre,:apellidos,:email,:telefono) ;";
 $result = $conn->prepare($sql); 
 
 $result->bindValue(':usuario', $m, PDO::PARAM_STR); 
