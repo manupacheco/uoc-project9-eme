@@ -51,10 +51,10 @@
  
             ?>
           <img src=img/<?php echo $row[0]?> width="100"/>  <br>
-          <?php echo $row[2] ; ?> <br>
-          <?php echo $row[1] ; ?>  euros<br>
-          <?php echo $row[3] ; ?> <br>
-          <?php echo $row['descripcion'] ; ?> <br>
+        <p>    <?php echo $row[2] ; ?></p> <br>
+        <p>   <?php echo $row[1] ; ?>  euros</p><br>
+        <p>   <?php echo $row[3] ; ?></p> <br>
+        <p>   <?php echo $row['descripcion'] ; ?> </p><br>
     
           </div>   <?php
           }
