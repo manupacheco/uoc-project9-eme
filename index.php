@@ -52,9 +52,8 @@
             ?>
           <img src=img/<?php echo $row[0]?> width="100"/>  <br>
         <p>    <?php echo $row[2] ; ?></p> <br>
-        <p>   <?php echo $row[1] ; ?>  euros</p><br>
-        <p>   <?php echo $row[3] ; ?></p> <br>
-        <p>   <?php echo $row['descripcion'] ; ?> </p><br>
+        <p>   Precio: <?php echo $row[1] ; ?>  euros</p><br>
+        <p>  Descripcion del producto: <?php echo $row['descripcion'] ; ?> </p><br>
     
           </div>   <?php
           }
