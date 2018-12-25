@@ -40,7 +40,7 @@ if($count)
 {
 $_SESSION['IdUsuario']=$data->IdUsuario; // Storing user session value
 
-header("Location: index.php"); 
+header("Location: valoraciones.php"); 
 
 
 }
