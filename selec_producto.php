@@ -26,10 +26,7 @@ $result->execute();
 
 $conn->commit(); 
 
-foreach ($result as $row){
-    
- 
-}
+
 }
 
 catch(PDOException $e) {
