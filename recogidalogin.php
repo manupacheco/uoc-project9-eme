@@ -1,16 +1,11 @@
 <?php
-
+require_once("./conexion.php");
    
 
 $usuario = $_POST['usuario'];
 $password = $_POST['password'];
    
-$db = 'eme'; 
-$host = 'localhost'; 
-$user = 'root'; 
-$pass = ''; 
-$conn = new PDO("mysql:dbname=".$db.";host=".$host,$user, $pass); 
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 
 // iniciar transacción 
 $conn->beginTransaction();
