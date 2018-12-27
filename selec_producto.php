@@ -1,13 +1,7 @@
 <?php
 
 
-$db = 'eme'; 
-$host = 'localhost'; 
-$user = 'root'; 
-$pass = ''; 
-$conn = new PDO("mysql:dbname=".$db.";host=".$host,$user, $pass); 
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+require_once("./conexion.php");
 // iniciar transacción 
 $conn->beginTransaction();
 
