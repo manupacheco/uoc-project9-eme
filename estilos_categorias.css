@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+
+#categorias{
+	padding-top: 6%;
+	margin-bottom: 10%;
+
+}
+
+#categorias p{
+	color: green;
+	font-size:150%;
+}
+
