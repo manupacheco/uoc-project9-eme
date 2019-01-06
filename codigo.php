@@ -39,7 +39,7 @@ public function getusuario ()
  
 public function login($usuario, $password){
 
-    require_once  "./conexion.php";
+   include  "./conexion.php";
 // iniciar transacción 
 $conn->beginTransaction();
  switch (empty($usuario)||empty($password)) {
@@ -71,8 +71,7 @@ $_SESSION['usuario']=$usuario; // Storing user session value
 
 //header("Location: datosusuario.php"); 
 
-echo "Bienvenido $usuario <a href = datosusuario.php> Ver datos</a><br>";
-echo    "<a href = valoraciones.php> Valorar producto</a><br>" ;
+
 }
 else
 {
@@ -130,5 +129,40 @@ $conn->commit();
 catch(PDOException $e) {
 echo '{"error":{"text":'. $e->getMessage() .'}}';
 }
+}
+
+
+public function modificar($usuario){
+    
+    include "./conexion.php"; 
+
+    $conn->beginTransaction();   
+
+    try { 
+
+
+
+
+// tabla 4 
+$sql =  "INSERT INTO usuarios (usuario, password, nombre, apellidos,mail, telefono,foto,fecha_modificacion )VALUES (:usuario, :password, :nombre,:apellidos,:email,:telefono, :foto,NOW()) ;";
+$result = $conn->prepare($sql); 
+
+$result->bindValue(':usuario', $m, PDO::PARAM_STR); 
+$result->bindValue(':password', $n, PDO::PARAM_STR);
+$result->bindValue(':nombre', $a, PDO::PARAM_STR);
+$result->bindValue(':apellidos', $b, PDO::PARAM_STR);
+$result->bindValue(':telefono', $k, PDO::PARAM_STR);
+$result->bindValue(':email', $l, PDO::PARAM_STR);
+$result->bindValue(':foto', $c, PDO::PARAM_STR);
+$result->execute();
+
+$conn->commit(); 
+echo 'Datos insertados'; 
+} catch (PDOException $e) { 
+// si ocurre un error hacemos rollback para anular todos los insert 
+$conn->rollback(); 
+echo $e->getMessage();; 
+} 
+    
 }
 }
