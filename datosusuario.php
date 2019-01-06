@@ -1,5 +1,5 @@
 <!Doctype html>
-<html>
+<html lang = "es">
 <head>
     
     <title>formulario</title> 
@@ -39,7 +39,7 @@
     
     
     <label for = "usuario"> Usuario</label>
-    <input type = "text"   name = "usuario" id = "usuario" size = "30" value="<?php echo $usuarioaqui;/*$consulta['usuario'];*/?>" ><br><br>
+    <input type = "text"   name = "usuario" id = "usuario" size = "30" value="<?php echo $consulta[2];/*$consulta['usuario'];*/?>" ><br><br>
     
      <label for = "password"> Contraseña</label>
     <input type = "password"   name = "password" id = "password" size = "30" value="<?php echo $consulta[3];?>" ><br><br>
