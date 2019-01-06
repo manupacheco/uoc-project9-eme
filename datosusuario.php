@@ -52,10 +52,14 @@
 
  $consulta = $codigo->seleccionar($usuario);
  
- 
- 
- $usuarioaqui = $_COOKIE['usuario'];
- 
+ $usuario = $_COOKIE['usuario'];
+ $password = (filter_input(INPUT_POST, 'password'));
+ $nombre = (filter_input(INPUT_POST, 'nombre'));
+ $apellidos = (filter_input(INPUT_POST, 'apellidos'));
+ $mail = (filter_input(INPUT_POST, 'mail'));
+ $telefono = (filter_input(INPUT_POST, 'telefono'));
+ $foto = (filter_input(INPUT_POST, 'foto'));
+ $fecha_modificacion = "NOW()";
  
 
 // iniciar transacción 
@@ -64,7 +68,7 @@
 <main>
 <div class="formulario">
 <h2>Modificar datos personales</h2> 
-<form action="modifdatosusuario.php" method="post">
+<form action="modifdatusu.php" method="post">
     
     
     <label for = "usuario"> Usuario</label>
@@ -88,11 +92,14 @@
     <label for = "foto"> Foto</label>
     <input type = "file"   name = "foto" id = "foto" size = "30" value="<?php echo $consulta[8];?>" ><br><br>
     
-    <button type ="button" name="modificar">Modificar datos</button>
+    <button type ="submit" value = "Modificar datos"id = "Enviar1" name="Enviar1">Modificar datos</button>
+    <button type ="submit" value = "Eliminar datos" id = "Enviar2" name="Enviar2">Eliminar datos</button>
 </form>
+
 
 </div>
 </main>
 </body>
 <footer>Grupo EME Proyecto 9</footer>
+</html>Proyecto 9</footer>
 </html>
