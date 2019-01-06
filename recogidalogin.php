@@ -63,8 +63,9 @@ $login= $codigo ->login($usuario, $password);
 ?>
 <main>
     <div class="container">
-        <h2><?php echo "Bienvenido $usuario <a href = datosusuario.php> Ver datos</a><br>";?> </h2>
-        <p> Si quiere valorar un producto  <a href = valoraciones.php> Picnhe aqui</a><br> </p>
+        <h2><?php echo "Bienvenido $usuario";?> </h2>
+        <p> Si quiere modificar sus datos  <a href = datosusuario.php> Modificar datos</a><br>
+        <p> Si quiere valorar un producto  <a href = valoraciones.php> Valorar productos</a><br> </p>
     </div>                 
 </main>
                 
