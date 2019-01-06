@@ -86,7 +86,7 @@
     <input type = "text"   name = "telefono" id = "telefono" size = "30" value="<?php echo $consulta[7];?>" ><br><br>
     
     <label for = "foto"> Foto</label>
-    <input type = "text"   name = "foto" id = "foto" size = "30" value="<?php echo $consulta[8];?>" ><br><br>
+    <input type = "file"   name = "foto" id = "foto" size = "30" value="<?php echo $consulta[8];?>" ><br><br>
     
     <button type ="button" name="modificar">Modificar datos</button>
 </form>
