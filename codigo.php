@@ -132,7 +132,7 @@ echo '{"error":{"text":'. $e->getMessage() .'}}';
 }
 
 
-public function modificar($usuario){
+public function update($usuario, $password, $nombre,$apellidos,$mail,$telefono, $foto, $fecha_modificacion){
     
     include "./conexion.php"; 
 
@@ -140,24 +140,74 @@ public function modificar($usuario){
 
     try { 
 
+if ( isset($_COOKIE['usuario'])) {
+    //Obtenemos datos.  
+    $usuario = $_COOKIE['usuario'] ?: '';
+    
+    $usuario = (string)$usuario;
 
+    
 
 
 // tabla 4 
-$sql =  "INSERT INTO usuarios (usuario, password, nombre, apellidos,mail, telefono,foto,fecha_modificacion )VALUES (:usuario, :password, :nombre,:apellidos,:email,:telefono, :foto,NOW()) ;";
+$sql =  "UPDATE usuarios SET usuario = :usuario , password = :password, nombre = :nombre, apellidos = :apellidos, mail = :mail, telefono = :telefono, foto_personal = :foto, fecha_modificacion = NOW() WHERE usuario like :usuario ;";
 $result = $conn->prepare($sql); 
 
-$result->bindValue(':usuario', $m, PDO::PARAM_STR); 
-$result->bindValue(':password', $n, PDO::PARAM_STR);
-$result->bindValue(':nombre', $a, PDO::PARAM_STR);
-$result->bindValue(':apellidos', $b, PDO::PARAM_STR);
-$result->bindValue(':telefono', $k, PDO::PARAM_STR);
-$result->bindValue(':email', $l, PDO::PARAM_STR);
-$result->bindValue(':foto', $c, PDO::PARAM_STR);
+$result->bindValue(':usuario', $usuario, PDO::PARAM_STR); 
+$result->bindValue(':password', $password, PDO::PARAM_STR);
+$result->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+$result->bindValue(':apellidos', $apellidos, PDO::PARAM_STR);
+$result->bindValue(':telefono', $telefono, PDO::PARAM_STR);
+$result->bindValue(':mail', $mail, PDO::PARAM_STR);
+$result->bindValue(':foto', $foto, PDO::PARAM_STR);
 $result->execute();
-
+}
+if ($result) {
+           
+           
+         
+           
+           
+       }else {
+           
+       
+           
+           echo "Error ocurrido al modificar datos en el sistema. Contacte con el administrador.";
+          
+       }
 $conn->commit(); 
-echo 'Datos insertados'; 
+
+} catch (PDOException $e) { 
+// si ocurre un error hacemos rollback para anular todos los insert 
+$conn->rollback(); 
+echo $e->getMessage();; 
+} 
+    
+}
+public function delete($usuario){
+    
+    include "./conexion.php"; 
+
+    $conn->beginTransaction();   
+
+    try { 
+
+if ( isset($_COOKIE['usuario'])) {
+    //Obtenemos datos.  
+    $usuario = $_COOKIE['usuario'] ?: '';
+    
+    $usuario = (string)$usuario;
+
+
+
+$sql =  "DELETE FROM usuarios WHERE usuario=:usuario; ";
+$result = $conn->prepare($sql); 
+
+$result->bindValue(':usuario', $usuario, PDO::PARAM_STR); 
+$result->execute();
+}
+$conn->commit(); 
+
 } catch (PDOException $e) { 
 // si ocurre un error hacemos rollback para anular todos los insert 
 $conn->rollback(); 
