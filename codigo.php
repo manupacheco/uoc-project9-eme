@@ -66,9 +66,10 @@ $conn->commit();
 
 if($count)
 {
+setcookie("usuario",$usuario,strtotime( '+30 days' ),"/",false, false);
 $_SESSION['usuario']=$usuario; // Storing user session value
 
-// header("Location: datosusuario.php"); 
+//header("Location: datosusuario.php"); 
 
 echo "Bienvenido $usuario <a href = datosusuario.php> Ver datos</a><br>";
 echo    "<a href = valoraciones.php> Valorar producto</a><br>" ;
@@ -93,12 +94,30 @@ $conn->beginTransaction();
 
 try { 
 // tabla 1 
-$sql = "SELECT * FROM usuarios WHERE usuario = :usuario ;"; 
-$result = $conn->prepare($sql); 
-$result->bindValue(':usuario', $usuario, PDO::PARAM_STR);
-$result->execute(); 
-$count = $result->rowCount();
-$fila = $result->fetch(PDO::FETCH_BOTH);
+if ( isset($_COOKIE['usuario'])) {
+    //Obtenemos datos.  
+    $usuario = $_COOKIE['usuario'] ?: '';
+    
+    $usuario = (string)$usuario;
+
+    
+    
+    $sql = "SELECT * FROM usuarios WHERE usuario = :usuario ;"; 
+    $result = $conn->prepare($sql); 
+    $result->bindValue(':usuario', $usuario, PDO::PARAM_STR);
+    $result->execute(); 
+    $fila = $result->fetch(PDO::FETCH_BOTH);
+    
+    
+}
+
+
+return $fila;
+
+
+
+
+
 
 
 
