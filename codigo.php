@@ -57,19 +57,20 @@ $result->bindValue(':usuario', $usuario, PDO::PARAM_STR);
 $result->bindValue(':password', $password, PDO::PARAM_STR);
 $result->execute(); 
 $count = $result->rowCount();
-$data=$result->fetch(PDO::FETCH_OBJ);
+$fila=$result->fetch(PDO::FETCH_BOTH);
 
+return $fila;
 
-
+$IdUsuario =$fila[0]; 
 
 $conn->commit(); 
 
 if($count)
 {
 setcookie("usuario",$usuario,strtotime( '+30 days' ),"/",false, false);
+setcookie("IdUsuario",$IdUsuario,strtotime( '+30 days' ),"/",false, false);
 $_SESSION['usuario']=$usuario; // Storing user session value
 
-//header("Location: datosusuario.php"); 
 
 
 }
@@ -215,4 +216,65 @@ echo $e->getMessage();;
 } 
     
 }
+
+
+public function valorar($IdProducto,$IdUsuario,$puntuacion,$comentario,$fechacreac){
+    
+    include "./conexion.php"; 
+
+    $conn->beginTransaction();   
+
+    try { 
+        if ( isset($_COOKIE['usuario']) || isset($_COOKIE['IdUsuario']) ) {
+    //Obtenemos datos.  
+    $usuario = $_COOKIE['usuario'] ?: '';
+    
+    $usuario = (string)$usuario;
+    $Idusuario = $_COOKIE['IdUsuario'];
+    
+    $sql2 = "SELECT * FROM valoraciones WHERE IdProducto = :IdProducto ;";
+    $result2 = $conn->prepare($sql2); 
+    $result2->bindValue(':IdProducto', $IdProducto, PDO::PARAM_INT); 
+    $result2->execute(); 
+    $count = $result2->rowCount();
+    
+    
+ if ($count = 1)   {
+$sql =  "UPDATE valoraciones SET IdProducto = :IdProducto , IdUsuario = :IdUsuario, puntuacion = :puntuacion, comentario = :comentario, fechacreac = NOW() WHERE IdProducto like :IdProducto ;";
+$result = $conn->prepare($sql); 
+
+$result->bindValue(':IdProducto', $IdProducto, PDO::PARAM_INT); 
+$result->bindValue(':IdUsuario', $Idusuario, PDO::PARAM_INT);
+$result->bindValue(':puntuacion', $puntuacion, PDO::PARAM_INT);
+$result->bindValue(':comentario', $comentario, PDO::PARAM_STR);
+
+$result->execute(); 
+ }
+ if ($count = 0)   {
+$sql3 =  "INSERT INTO valoraciones (IdProducto, IdUsuario, puntuacion, comentario,fechacreac )VALUES (:IdProducto, :IdUsuario,:puntuacion,:comentario, NOW()) ;";
+$result3 = $conn->prepare($sql3); 
+
+$result3->bindValue(':IdProducto', $IdProducto, PDO::PARAM_INT); 
+$result3->bindValue(':IdUsuario', $Idusuario, PDO::PARAM_INT);
+$result3->bindValue(':puntuacion', $puntuacion, PDO::PARAM_INT);
+$result3->bindValue(':comentario', $comentario, PDO::PARAM_STR);
+
+$result3->execute(); 
+ }
+ 
+ 
+ }
+
+
+
+$conn->commit();       
+        
+    } catch (PDOException $e) { 
+// si ocurre un error hacemos rollback para anular todos los insert 
+$conn->rollback(); 
+echo $e->getMessage();; 
+} 
+    
+}
+
 }
