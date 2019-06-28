@@ -13,18 +13,10 @@ $result = $conn->prepare($sql);
 $result->execute(); 
 
 
+return $result;
 
 
 
-
-
-
-
-
-foreach ($result as $row){
-    
- 
-}
 $conn->commit(); }
 
 
